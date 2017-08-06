@@ -1,0 +1,10 @@
+{% extends 'oscar/checkout/payment_details.html' %}
+{% load i18n %}
+
+{% block payment_details_content %}
+    <h3>{% trans "Payments may be taken by Mollie only." %}</h3>
+    <form method="post" action="{% url 'checkout:preview' %}">
+        {% csrf_token %}
+        <a id="view_preview" href="{% url 'checkout:preview' %}" class="btn btn-primary">{% trans "Continue" %}</a>
+    </form>
+{% endblock payment_details_content %}
