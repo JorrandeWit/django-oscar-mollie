@@ -14,6 +14,9 @@ $ pip install django-oscar-mollie
 
 You will need to set your [Mollie API Key](https://www.mollie.nl/beheer/account/profielen/) to connect to Mollie.
 
+
+## Getting Started ##
+
 ```
 # settings.py
 MOLLIE_API_KEY = 'secret-key-123'
