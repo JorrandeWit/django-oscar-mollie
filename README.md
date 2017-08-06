@@ -5,15 +5,6 @@
 
 Payment gateway integration between [Mollie API client](https://github.com/mollie/mollie-api-python) and [Django Oscar](https://github.com/django-oscar/django-oscar).
 
-## Requirements ##
-To use the Mollie API client, the following things are required:
-
-+ Get yourself a free [Mollie account](https://www.mollie.nl/aanmelden). No sign up costs.
-+ Create a new [Website profile](https://www.mollie.nl/beheer/account/profielen/) to generate API keys and setup your webhook.
-+ Now you're ready to use the Mollie API client in test mode.
-+ In order to accept payments in live mode, payment methods must be activated in your account. Follow [a few steps](https://www.mollie.nl/beheer/diensten), and let us handle the rest.
-+ Mollie API client for Python has a dependency on [Requests](http://python-requests.org).
-
 ## Installation ##
 
 You will need to set your [Mollie API Key](https://www.mollie.nl/beheer/account/profielen/) to connect to Mollie.
