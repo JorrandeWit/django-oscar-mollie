@@ -1,4 +1,4 @@
-![Mollie](https://www.mollie.nl/files/Mollie-Logo-Style-Small.png) 
+![Mollie](https://www.mollie.nl/files/Mollie-Logo-Style-Small.png)
 ![Oscar](https://github.com/django-oscar/django-oscar/raw/master/docs/images/logos/oscar.png)
 
 # Mollie API client for Django Oscar #
@@ -6,6 +6,11 @@
 Payment gateway integration between [Mollie API client](https://github.com/mollie/mollie-api-python) and [Django Oscar](https://github.com/django-oscar/django-oscar).
 
 ## Installation ##
+
+The easiest way to install is with [pip](https://pip.pypa.io).
+```
+$ pip install django-oscar-mollie
+```
 
 You will need to set your [Mollie API Key](https://www.mollie.nl/beheer/account/profielen/) to connect to Mollie.
 
