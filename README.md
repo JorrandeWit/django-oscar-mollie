@@ -25,7 +25,7 @@ MOLLIE_STATUS_MAPPING = {
 }
 ```
 
-You need to make sure your webhook URI is accessible. To do so, include the following into your root URLs conf (you are free to whatever regex you may like):
+You need to make sure your webhook URI is accessible. To do so, include the following into your root URLs conf (you are free to choose whatever regex you may like):
 ```
 url(r'^mollie/', include('mollie_oscar.urls', namespace='mollie_oscar')),
 ```
