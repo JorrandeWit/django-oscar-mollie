@@ -43,3 +43,7 @@ Please visit the [sandbox](https://github.com/JorrandeWit/django-oscar-mollie/tr
 ## Under Construction ##
 The following needs to be added to this application.
 + Support Refunding payments
+
+## License ##
+[BSD (Berkeley Software Distribution) License](https://opensource.org/licenses/bsd-license.php).
+Copyright (c) 2017, Jorran de Wit.
