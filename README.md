@@ -15,13 +15,13 @@ $ pip install django-oscar-mollie
 
 ## Getting Started ##
 You need to set your [Mollie API Key](https://www.mollie.nl/beheer/account/profielen/) to connect to Mollie.
-```
+```python
 # settings.py
 MOLLIE_API_KEY = 'secret-key-123'
 ```
 
 Also, you need to define a mapping from the four possible [Mollie responses](https://www.mollie.com/nl/docs/reference/payments/get#example) to your [Oscar order statuses](http://django-oscar.readthedocs.io/en/releases-1.1/ref/settings.html#oscar-order-status-pipeline).
-```
+```python
 # settings.py
 MOLLIE_STATUS_MAPPING = {
     'Paid': 'Being processed',
@@ -32,7 +32,7 @@ MOLLIE_STATUS_MAPPING = {
 ```
 
 You need to make sure your webhook URI is accessible. To do so, include the following into your root URLs conf (you are free to choose whatever regex you may like):
-```
+```python
 url(r'^mollie/', include('mollie_oscar.urls', namespace='mollie_oscar')),
 ```
 
