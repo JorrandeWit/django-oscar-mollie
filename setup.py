@@ -2,7 +2,7 @@
 from setuptools import setup
 
 setup(name='django-oscar-mollie',
-      version='0.1',
+      version='0.1.1',
       url='https://github.com/JorrandeWit/django-oscar-mollie',
       author="Jorran de Wit",
       author_email="jorrandewit@outlook.com",
