@@ -5,6 +5,8 @@
 
 Payment gateway integration between [Mollie API client](https://github.com/mollie/mollie-api-python) and [Django Oscar](https://github.com/django-oscar/django-oscar).
 
+[![PyPI version](https://badge.fury.io/py/django-oscar-mollie.svg)](https://badge.fury.io/py/django-oscar-mollie)
+
 ## Installation ##
 
 The easiest way to install is with [pip](https://pip.pypa.io).
