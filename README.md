@@ -12,11 +12,9 @@ The easiest way to install is with [pip](https://pip.pypa.io).
 $ pip install django-oscar-mollie
 ```
 
-You will need to set your [Mollie API Key](https://www.mollie.nl/beheer/account/profielen/) to connect to Mollie.
-
 
 ## Getting Started ##
-
+You need to set your [Mollie API Key](https://www.mollie.nl/beheer/account/profielen/) to connect to Mollie.
 ```
 # settings.py
 MOLLIE_API_KEY = 'secret-key-123'
@@ -43,5 +41,5 @@ url(r'^mollie/', include('mollie_oscar.urls', namespace='mollie_oscar')),
 Please visit the [sandbox](https://github.com/JorrandeWit/django-oscar-mollie/tree/master/sandbox) to see how to integrate Mollie into your Oscar application.
 
 ## Under Construction ##
-The following will need to be added to this application.
+The following needs to be added to this application.
 + Support Refunding payments
