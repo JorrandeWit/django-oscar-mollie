@@ -26,7 +26,7 @@ Also, you need to define a mapping from the four possible [Mollie responses](htt
 ```python
 # settings.py
 MOLLIE_STATUS_MAPPING = {
-    'Paid': 'Being processed',
+    'Paid': ORDER_STATUS_PAID,
     'Pending': 'Pending Payment',
     'Open': 'Pending Payment',
     'Cancelled': 'Cancelled'

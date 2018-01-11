@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib.sites.models import Site
 from django.core.urlresolvers import NoReverseMatch, reverse
 from django.db import transaction
@@ -54,6 +55,12 @@ class WebhookView(OrderPlacementMixin, View):
 
             # Send Message now since this was blocked before
             order = facade.get_order(payment_id)
-            self.send_confirmation_message(order, self.communication_type_code)
+
+            # Only send confirmation if order is paid
+            if order.status in settings.OSCAR_MOLLIE_CONFIRMED_STATUSES:
+                self.send_confirmation_message(
+                    order,
+                    self.communication_type_code,
+                )
 
         return HttpResponse(status=200)
