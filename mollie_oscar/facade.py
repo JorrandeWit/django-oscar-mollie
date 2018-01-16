@@ -54,7 +54,7 @@ class Facade(object):
             'amount': float(total),
             'description': description or self.get_default_description(order_number),
             'redirectUrl': redirect_url,
-            'webhookUrl':  self.get_webhook_url(),
+            'webhookUrl': self.get_webhook_url(),
             'metadata': {
                 'order_nr': order_number
             }
