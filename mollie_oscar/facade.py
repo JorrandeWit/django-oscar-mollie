@@ -8,10 +8,11 @@ from django.urls import reverse
 
 import Mollie
 from oscar.apps.payment.exceptions import UnableToTakePayment
-from oscar.core.loading import get_model
+from oscar.core.loading import get_class, get_model
 
 logger = logging.getLogger('oscar.checkout')
 
+EventHandler = get_class('order.processing', 'EventHandler')
 Order = None
 SourceType = None
 
@@ -54,7 +55,7 @@ class Facade(object):
             'amount': float(total),
             'description': description or self.get_default_description(order_number),
             'redirectUrl': redirect_url,
-            'webhookUrl':  self.get_webhook_url(),
+            'webhookUrl': self.get_webhook_url(),
             'metadata': {
                 'order_nr': order_number
             }
@@ -126,7 +127,9 @@ class Facade(object):
             raise UnableToTakePayment('Shit men... What happened?')
 
     def update_order_payment(self, order, status_code):
-        order.set_status(settings.MOLLIE_STATUS_MAPPING[status_code])
+        new_status = settings.MOLLIE_STATUS_MAPPING[status_code]
+        handler = EventHandler()
+        handler.handle_order_status_change(order, new_status, "Mollie payment update")
 
     def register_payment_event(self, order, amount, reference):
         _lazy_get_payment_event_models()
