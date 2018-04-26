@@ -42,7 +42,8 @@ class WebhookView(OrderPlacementMixin, View):
                 pass
             else:
                 site = Site.objects.get_current()
-                ctx['status_url'] = 'http://%s%s' % (site.domain, path)
+                protocol = 'https' if settings.OSCAR_MOLLIE_HTTPS else 'http'
+                ctx['status_url'] = '%s://%s%s' % (protocol, site.domain, path)
         else:
             ctx['status_url'] = None
         return ctx
