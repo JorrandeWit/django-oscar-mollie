@@ -38,6 +38,13 @@ You need to make sure your webhook URI is accessible. To do so, include the foll
 url(r'^mollie/', include('mollie_oscar.urls', namespace='mollie_oscar')),
 ```
 
+## HTTPS ##
+
+If your site runs on HTTPS, turn this on by enabling the following setting:
+```python
+OSCAR_MOLLIE_HTTPS = True
+```
+
 ## Examples ##
 
 Please visit the [sandbox](https://github.com/JorrandeWit/django-oscar-mollie/tree/master/sandbox) to see how to integrate Mollie into your Oscar application.
