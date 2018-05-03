@@ -49,7 +49,8 @@ class Facade(object):
             redirect_url = reverse('customer:order', kwargs={'order_number': order_number})
 
         site = Site.objects.get_current()
-        redirect_url = 'http://%s%s' % (site.domain, redirect_url)
+        protocol = 'https' if settings.OSCAR_MOLLIE_HTTPS else 'http'
+        redirect_url = '%s://%s%s' % (protocol, site.domain, redirect_url)
 
         payment = self.mollie.payments.create({
             'amount': float(total),
@@ -76,7 +77,8 @@ class Facade(object):
     def get_webhook_url(self):
         # TODO: Make this related to this app without explicit namespace declaration...?
         site = Site.objects.get_current()
-        return 'http://%s%s' % (site.domain, reverse('mollie_oscar:webhook'))
+        protocol = 'https' if settings.OSCAR_MOLLIE_HTTPS else 'http'
+        return '%s://%s%s' % (protocol, site.domain, reverse('mollie_oscar:webhook'))
 
     def get_order(self, payment_id, order_nr=None):
         _lazy_get_models()
