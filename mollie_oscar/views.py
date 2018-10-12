@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.contrib.sites.models import Site
-from django.core.urlresolvers import NoReverseMatch, reverse
+from django.urls import NoReverseMatch, reverse
 from django.db import transaction
 from django.http import HttpResponse
 from django.utils.decorators import method_decorator
