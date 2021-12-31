@@ -31,4 +31,8 @@ setup(name='django-oscar-mollie',
       packages=[
         'mollie_oscar'
       ],
-      install_requires=['mollie-api-python'])
+      install_requires=[
+        'mollie-api-python',
+        'django>=2.1',
+      ]
+)
