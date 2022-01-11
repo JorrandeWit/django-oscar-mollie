@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.contrib.sites.models import Site
-from django.core.urlresolvers import NoReverseMatch, reverse
+from django.urls import NoReverseMatch, reverse
 from django.db import transaction
 from django.http import HttpResponse
 from django.utils.decorators import method_decorator
@@ -59,9 +59,6 @@ class WebhookView(OrderPlacementMixin, View):
 
             # Only send confirmation if order is paid
             if order.status in settings.OSCAR_MOLLIE_CONFIRMED_STATUSES:
-                self.send_confirmation_message(
-                    order,
-                    self.communication_type_code,
-                )
+                self.send_order_placed_email(order)
 
         return HttpResponse(status=200)
