@@ -59,9 +59,6 @@ class WebhookView(OrderPlacementMixin, View):
 
             # Only send confirmation if order is paid
             if order.status in settings.OSCAR_MOLLIE_CONFIRMED_STATUSES:
-                self.send_confirmation_message(
-                    order,
-                    self.communication_type_code,
-                )
+                self.send_order_placed_email(order)
 
         return HttpResponse(status=200)
