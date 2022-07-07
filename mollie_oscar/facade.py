@@ -6,7 +6,7 @@ from django.conf import settings
 from django.http import Http404
 from django.urls import reverse
 
-import Mollie
+import mollie
 from oscar.apps.payment.exceptions import UnableToTakePayment
 from oscar.core.loading import get_class, get_model
 
