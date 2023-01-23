@@ -5,8 +5,7 @@ from django.contrib.sites.models import Site
 from django.conf import settings
 from django.http import Http404
 from django.urls import reverse
-
-import Mollie
+from mollie.api.client import Client as MollieClient
 from oscar.apps.payment.exceptions import UnableToTakePayment
 from oscar.core.loading import get_class, get_model
 
@@ -41,8 +40,8 @@ def _lazy_get_models():
 
 class Facade(object):
     def __init__(self):
-        self.mollie = Mollie.API.Client()
-        self.mollie.setApiKey(settings.MOLLIE_API_KEY)
+        self.mollie = MollieClient()
+        self.mollie.set_api_key(settings.MOLLIE_API_KEY)
 
     def create_payment(self, order_number, total, description=None, redirect_url=None):
         if not redirect_url:
@@ -53,7 +52,10 @@ class Facade(object):
         redirect_url = '%s://%s%s' % (protocol, site.domain, redirect_url)
 
         payment = self.mollie.payments.create({
-            'amount': float(total),
+            'amount': {
+                'value': str(total),
+                'currency': "EUR",
+            },
             'description': description or self.get_default_description(order_number),
             'redirectUrl': redirect_url,
             'webhookUrl': self.get_webhook_url(),
@@ -72,7 +74,7 @@ class Facade(object):
         Return the customer's payment URL
         """
         payment = self.mollie.payments.get(payment_id)
-        return payment.getPaymentUrl()
+        return payment.checkout_url
 
     def get_webhook_url(self):
         # TODO: Make this related to this app without explicit namespace declaration...?
@@ -101,19 +103,19 @@ class Facade(object):
         The Mollie payment status has changed. Translate this status update to Oscar.
         """
         payment = self.mollie.payments.get(payment_id)
-        amount = Decimal(payment.get('amount'))
+        amount = Decimal(payment.amount["value"])
         try:
-            order_nr = payment.get['metadata']['order_nr']
+            order_nr = payment.metadata["order_nr"]
         except TypeError:
             order_nr = None
         order = self.get_order(payment_id, order_nr)
 
-        if payment.isPaid():
+        if payment.is_paid():
             status_code = 'Paid'
             self.complete_order(order, amount, payment_id, status_code)
-        elif payment.isPending():
+        elif payment.is_pending():
             status_code = 'Pending'
-        elif payment.isOpen():
+        elif payment.is_open():
             status_code = 'Open'
         else:
             status_code = 'Cancelled'
